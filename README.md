@@ -7,13 +7,8 @@ This repository contains the final project for the **[LLM Zoom Camp](https://git
 - [Project Overview](#project-overview)
 - [Data Collection](#data-collection)
 - [Analysis](#analysis)
-- [Architecture](#architecture)
-- [Getting Started](#getting-started)
+- [Technologies](#technologies)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Future Work](#future-work)
-- [Contributing](#contributing)
-- [License](#license)
 
 
 ## Project Overview
@@ -55,13 +50,39 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 | 2500.000000| 0.675582 | 0.161148| -0.020848 | 0.582057 | 0.705028 | 0.792661 | 0.981918 |
 
 
+## Technologies
+LLM: Gemini, Mistral, llama, Ollamam 
+Knowledge base: TF-IDF search, Elasticsearch
 
-## Architecture
-The chatbot architecture is built on a **Retrieval-Augmented Generation (RAG)** framework that combines vector-based search with language model generation for accurate and concise responses:
+## Installation
 
-1. **Vector-Based Search with ElasticSearch**: User queries are processed as vector embeddings and searched against a database using **ElasticSearch** to retrieve the most relevant information.
+The following processes are required to run Elasticsearch and Ollama.
 
-2. **Prompt Creation**: The retrieved results are dynamically formatted into a structured prompt, which is fed into a **Large Language Model (LLM)**.
+1. Run Elasticsearch
+```bash
+docker run -it \
+    --rm \
+    --name elasticsearch \
+    -p 9200:9200 \
+    -p 9300:9300 \
+    -e "discovery.type=single-node" \
+    -e "xpack.security.enabled=false" \
+    docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+```
+2. Run Ollama
+```bash
+docker run -it \
+    --rm \
+    -v ollama:/root/.ollama \
+    -p 11434:11434 \
+    --name ollama \
+    ollama/ollama
+```
+3. Run gemma 2b
+```bash
+docker exec -it ollama ollama run gemma:2b
+```
 
-3. **Response Generation**: The LLM processes the prompt and generates a clear, concise summary tailored to answer the user’s question accurately.
+
+
 
