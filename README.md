@@ -1,6 +1,6 @@
 # Nnet101_Assistant
 
-This repository contains the final project for the **[LLM Zoom Camp](https://github.com/DataTalksClub/llm-zoomcamp/tree/main)** course. It demonstrates the application of Retrieval-Augmented Generation (RAG) techniques using StackExchange data to answer questions related to neural networks.
+This repository contains the final project for the **[LLM Zoom Camp](https://github.com/DataTalksClub/llm-zoomcamp/tree/main)** course. It demonstrates the application of Retrieval-Augmented Generation (RAG) techniques using StackExchange data to answer questions related to foundational neural network concepts.
 
 ## Table of Contents
 
