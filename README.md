@@ -1,6 +1,6 @@
 # Nnet101_Assistant
 
-This repository hosts a project for creating a **Q&A chatbot** powered by a **Retrieval-Augmented Generation (RAG)** approach to provide answers to neural network-related questions.
+This repository contains the final project for the **[LLM Zoom Camp](https://github.com/DataTalksClub/llm-zoomcamp/tree/main)** course. It demonstrates the application of Retrieval-Augmented Generation (RAG) techniques using StackExchange data to answer questions related to neural networks.
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ This repository hosts a project for creating a **Q&A chatbot** powered by a **Re
 This chatbot leverages Retrieval-Augmented Generation (RAG) to answer questions about neural networks. It combines a retriever to find relevant answers from a curated dataset and a generator to deliver clear, concise responses, making it a valuable tool for users seeking foundational knowledge in neural networks.
 
 ## Data Collection
-The data for this project was gathered using the StackExchange API and focuses on fundamental questions related to neural networks.
+The data for this project was gathered using the StackExchange API and focused on fundamental questions related to neural networks. The collected answers vary in length. The Gemini 1.0 model was used to create a short summary of the answers.
 You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/blob/main/data/Stackoverflow_data(neural_networks_stats)_pre_processed_Gemini_LLM.csv)
 
 ## Architecture
