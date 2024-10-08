@@ -51,8 +51,8 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 
 
 ## Technologies
-LLM: Gemini, Mistral, llama, Ollamam 
-Knowledge base: TF-IDF search, Elasticsearch
+- LLM: Gemini, Mistral, llama, Ollama
+- Knowledge base: TF-IDF search, Elasticsearch
 
 ## Installation
 
