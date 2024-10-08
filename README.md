@@ -6,6 +6,7 @@ This repository contains the final project for the **[LLM Zoom Camp](https://git
 
 - [Project Overview](#project-overview)
 - [Data Collection](#data-collection)
+- [Analysis](#analysis)
 - [Architecture](#architecture)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
@@ -22,7 +23,9 @@ This chatbot leverages Retrieval-Augmented Generation (RAG) to answer questions 
 The data for this project was gathered using the StackExchange API and focused on fundamental questions related to neural networks. The collected answers vary in length. The Gemini 1.0 model was used to create a short summary of the answers.
 You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/blob/main/data/Stackoverflow_data(neural_networks_stats)_pre_processed_Gemini_LLM.csv)
 
+
 ## Analysis
+
 ### Text search evaluation
 
 | Type                | Hit Rate | MRR                          |
@@ -31,6 +34,7 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 | text_customsearch    | 0.5572   | 0.4396800000000009           |
 
 ### Vector search evaluation
+
 | Type                                | Hit Rate | MRR                          |
 |-------------------------------------|----------|------------------------------|
 | question_vector_elasticsearch       | 0.6256   | 0.5150333333333336          |
@@ -49,7 +53,6 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 | Count      | Mean     | Std Dev | Min       | 25%      | 50%      | 75%      | Max      |
 |------------|----------|---------|-----------|----------|----------|----------|----------|
 | 2500.000000| 0.675582 | 0.161148| -0.020848 | 0.582057 | 0.705028 | 0.792661 | 0.981918 |
-
 
 
 
