@@ -1,0 +1,5 @@
+type,hit_rate,mrr
+question_vector_elasticsearch,0.6256,0.5150333333333336
+answer_vector_elasticsearch,0.8308,0.7089066666666664
+question-answer_vector_elasticsearch,0.8548,0.7323599999999993
+custom-combined_vector_scoring_elasticsearch,0.832,0.7055066666666656
