@@ -55,6 +55,7 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 - Data: Stackapps API
 - LLM: Gemini, Mistral, llama, Ollama, cloudflare
 - Knowledge base: TF-IDF search, Elasticsearch
+- Interface: Streamlit
 
 ## Installation
 
