@@ -51,6 +51,26 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 |------------|----------|---------|-----------|----------|----------|----------|----------|
 | 2500.000000| 0.675582 | 0.161148| -0.020848 | 0.582057 | 0.705028 | 0.792661 | 0.981918 |
 
+### LLM as a judge (150 llama samples)
+#### Relevance of original answers and LLM-generated answers using llama-2-7b-chat-int8
+**A->Q->A**
+| Category          | Count |
+|-------------------|-------|
+| Relevant          | 74    |
+| Partly Relevant   | 70    |
+| Non-Relevant      | 6     |
+
+#### Relevance of LLM-generated answers to questions using llama-2-7b-chat-int8
+**Q->A**
+| Category         | Count |
+|------------------|-------|
+| Relevant         | 85    |
+| Partly Relevant  | 54    |
+| Non-Relevant     | 11    |
+
+
+
+
 
 ## Technologies
 - Data: Stackapps API
