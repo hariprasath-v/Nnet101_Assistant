@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 import json
+import importlib.util
+import sys
 
 import google.generativeai as genai
 import os
@@ -17,8 +19,12 @@ data = response.json()
 url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch.py"
 response = requests.get(url)
 
-# Execute the downloaded Python code directly
-exec(response.text)
+# Load the minsearch module
+spec = importlib.util.spec_from_file_location("minsearch", minsearch_file_path)
+minsearch = importlib.util.module_from_spec(spec)
+sys.modules["minsearch"] = minsearch
+spec.loader.exec_module(minsearch)
+
 
 import minsearch
 
