@@ -74,7 +74,7 @@ CONTEXT:
     return prompt
 
 def llm(prompt):
-    response = model.generate_content(build_prompt(prompt))
+    response = model.generate_content(prompt)
     
     return response.text
 
