@@ -58,17 +58,17 @@ Relevance of original answers and LLM-generated answers using llama-2-7b-chat-in
 
 | Category          | Count |
 |-------------------|-------|
-| Relevant          | 74    |
-| Partly Relevant   | 70    |
-| Non-Relevant      | 6     |
+| Relevant          | 85    |
+| Partly Relevant   | 54    |
+| Non-Relevant      | 11     |
 
 Relevance of LLM-generated answers to questions using llama-2-7b-chat-int8
 
 | Category         | Count |
 |------------------|-------|
-| Relevant         | 85    |
-| Partly Relevant  | 54    |
-| Non-Relevant     | 11    |
+| Relevant         | 74    |
+| Partly Relevant  | 70   |
+| Non-Relevant     |  6   |
 
 
 
