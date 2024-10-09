@@ -99,5 +99,5 @@ streamlit run streamlit_app/app.py
 ## Streamlit Cloud APP
 - Retrieve results based on TF-IDF similarity
 - Generate answer using gemini-1.0-pro model
-https://nnet101assistant.streamlit.app/
+- https://nnet101assistant.streamlit.app/
 
