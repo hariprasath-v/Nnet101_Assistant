@@ -15,15 +15,12 @@ url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/he
 response = requests.get(url)
 data = response.json()
 
-# Load minsearch from URL
+
 url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch.py"
 response = requests.get(url)
 
-# Load the minsearch module
-spec = importlib.util.spec_from_file_location("minsearch", './minsearch.py')
-minsearch = importlib.util.module_from_spec(spec)
-sys.modules["minsearch"] = minsearch
-spec.loader.exec_module(minsearch)
+# Execute the downloaded Python code directly in a new scope
+exec(response.text)
 
 
 import minsearch
