@@ -11,6 +11,7 @@ This repository contains the final project for the **[LLM Zoom Camp](https://git
 - [Installation](#installation)
 
 
+
 ## Project Overview
 This chatbot leverages Retrieval-Augmented Generation (RAG) to answer questions about neural networks. It combines a retriever to find relevant answers from a curated dataset and a generator to deliver clear, concise responses, making it a valuable tool for users seeking foundational knowledge in neural networks.
 
@@ -84,6 +85,10 @@ docker run -it \
 docker exec -it ollama ollama run gemma:2b
 ```
 
-
+4. Install requirements
+```bash
+pip install requirements
+```
+   
 
 
