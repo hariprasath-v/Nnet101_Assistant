@@ -89,6 +89,10 @@ docker exec -it ollama ollama run gemma:2b
 ```bash
 pip install requirements
 ```
+5. Run streamlit app
+```bash
+streamlit run streamlit_app/app.py
+```
    
 
 
