@@ -2,4 +2,4 @@ requests
 numpy
 pandas
 google-generativeai
-sklearn
+
