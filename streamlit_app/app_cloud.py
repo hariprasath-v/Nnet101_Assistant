@@ -13,13 +13,12 @@ url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/he
 response = requests.get(url)
 data = response.json()
 
-# Load minsearch from URL and save it
+# Load minsearch from URL
 url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch.py"
 response = requests.get(url)
 
-# Save the content to a local file
-with open("minsearch.py", "wb") as file:
-    file.write(response.content)
+# Execute the downloaded Python code directly
+exec(response.text)
 
 import minsearch
 
