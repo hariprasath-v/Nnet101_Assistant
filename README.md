@@ -39,13 +39,15 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 | question-answer_vector_elasticsearch| 0.8548   | 0.7323599999999993          |
 | custom-combined_vector_scoring_elasticsearch | 0.832   | 0.7055066666666656  |
 
-### mistral-7b-instruct-v0.1 cosine similarity(original answers vs llm generated answers)
+### Cosine similarity
+
+mistral-7b-instruct-v0.1 cosine similarity(original answers vs llm generated answers)
 
 | Count      | Mean     | Std Dev | Min       | 25%      | 50%      | 75%      | Max      |
 |------------|----------|---------|-----------|----------|----------|----------|----------|
 | 2500.000000| 0.709169 | 0.157913| -0.068219 | 0.621302 | 0.741953 | 0.825930 | 0.986987 |
 
-### llama-2-7b-chat-int8 cosine similarity(original answers vs llm generated answers)
+llama-2-7b-chat-int8 cosine similarity(original answers vs llm generated answers)
 
 | Count      | Mean     | Std Dev | Min       | 25%      | 50%      | 75%      | Max      |
 |------------|----------|---------|-----------|----------|----------|----------|----------|
