@@ -20,7 +20,7 @@ url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch
 response = requests.get(url)
 
 # Load the minsearch module
-spec = importlib.util.spec_from_file_location("minsearch", minsearch_file_path)
+spec = importlib.util.spec_from_file_location("minsearch", './minsearch.py')
 minsearch = importlib.util.module_from_spec(spec)
 sys.modules["minsearch"] = minsearch
 spec.loader.exec_module(minsearch)
