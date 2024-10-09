@@ -11,6 +11,7 @@ This repository contains the final project for the **[LLM Zoom Camp](https://git
 - [Installation](#installation)
 
 
+
 ## Project Overview
 This chatbot leverages Retrieval-Augmented Generation (RAG) to answer questions about neural networks. It combines a retriever to find relevant answers from a curated dataset and a generator to deliver clear, concise responses, making it a valuable tool for users seeking foundational knowledge in neural networks.
 
@@ -54,6 +55,7 @@ You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/
 - Data: Stackapps API
 - LLM: Gemini, Mistral, llama, Ollama, cloudflare
 - Knowledge base: TF-IDF search, Elasticsearch
+- Interface: Streamlit
 
 ## Installation
 
@@ -84,6 +86,14 @@ docker run -it \
 docker exec -it ollama ollama run gemma:2b
 ```
 
-
+4. Install requirements
+```bash
+pip install requirements
+```
+5. Run streamlit app
+```bash
+streamlit run streamlit_app/app.py
+```
+   
 
 
