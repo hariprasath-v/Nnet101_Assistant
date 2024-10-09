@@ -23,8 +23,6 @@ response = requests.get(url)
 exec(response.text)
 
 
-import minsearch
-
 # Create the index
 index = minsearch.Index(
     text_fields=["question", "answer"],
