@@ -2,6 +2,12 @@ import streamlit as st
 import requests
 import json
 
+import google.generativeai as genai
+import os
+
+genai.configure(api_key=st.secrets["gemini_key"])
+model = genai.GenerativeModel("models/gemini-1.0-pro")
+
 # Load JSON data directly from URL
 url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/nnet_101_qna_with_id.json"
 response = requests.get(url)
@@ -27,12 +33,6 @@ index = minsearch.Index(
 index.fit(data)
 
 
-from openai import OpenAI
-
-client = OpenAI(
-    base_url='http://localhost:11434/v1',
-    api_key='ollama',
-)
 
 
 
@@ -64,12 +64,9 @@ CONTEXT:
     return prompt
 
 def llm(prompt):
-    response = client.chat.completions.create(
-        model="gemma:2b",
-        messages=[{"role": "user", "content": prompt}]
-    )
+    response = model.generate_content(build_prompt(prompt))
     
-    return response.choices[0].message.content
+    return response.text
 
 
 def rag(query):
