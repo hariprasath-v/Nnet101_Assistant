@@ -83,7 +83,7 @@ def rag(query):
     search_results = search(query)
     prompt = build_prompt(query, search_results)
     answer = llm(prompt)
-    return prompt
+    return answer
 
 
 
