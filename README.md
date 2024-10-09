@@ -9,6 +9,7 @@ This repository contains the final project for the **[LLM Zoom Camp](https://git
 - [Analysis](#analysis)
 - [Technologies](#technologies)
 - [Installation](#installation)
+- [Streamlit Cloud APP](#streamlit-cloud-app)
 
 
 
@@ -16,7 +17,7 @@ This repository contains the final project for the **[LLM Zoom Camp](https://git
 This chatbot leverages Retrieval-Augmented Generation (RAG) to answer questions about neural networks. It combines a retriever to find relevant answers from a curated dataset and a generator to deliver clear, concise responses, making it a valuable tool for users seeking foundational knowledge in neural networks.
 
 ## Data Collection
-The data for this project was gathered using the StackExchange API and focused on fundamental questions related to neural networks. The collected answers vary in length. The Gemini 1.0 model was used to create a short summary of the answers.
+The data for this project was gathered using the StackExchange API and focused on fundamental questions related to neural networks. The collected answers vary in length. The Gemini 1.0 pro model was used to create a summary of the answers.
 You can find the data [here](https://github.com/hariprasath-v/Nnet101_Assistant/blob/main/data/Stackoverflow_data(neural_networks_stats)_pre_processed_Gemini_LLM.csv)
 
 
@@ -95,5 +96,8 @@ pip install requirements
 streamlit run streamlit_app/app.py
 ```
    
-
+## Streamlit Cloud APP
+- Retrieve results based on TF-IDF similarity
+- Generate answer using gemini-1.0-pro model
+https://nnet101assistant.streamlit.app/
 
