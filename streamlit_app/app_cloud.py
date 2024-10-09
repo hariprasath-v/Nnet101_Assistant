@@ -16,11 +16,21 @@ response = requests.get(url)
 data = response.json()
 
 
+# Load minsearch from URL
 url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch.py"
 response = requests.get(url)
 
-# Execute the downloaded Python code directly in a new scope
-exec(response.text)
+# Save the content to the current working directory
+minsearch_file_path = "minsearch.py"  # Saving directly in the root of your app
+with open(minsearch_file_path, "wb") as file:
+    file.write(response.content)
+
+# Import the module from the saved file
+spec = importlib.util.spec_from_file_location("minsearch", minsearch_file_path)
+minsearch = importlib.util.module_from_spec(spec)
+import sys
+sys.modules["minsearch"] = minsearch
+spec.loader.exec_module(minsearch)
 
 
 # Create the index
