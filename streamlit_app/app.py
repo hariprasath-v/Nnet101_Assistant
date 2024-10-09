@@ -97,7 +97,7 @@ if user_input:
     st.session_state.history.append({"role": "user", "content": user_input})
 
     # Display the response
-    bot_response = llm(user_input)
+    bot_response = rag(user_input)
     st.session_state.history.append({"role": "assistant", "content": bot_response})
     st.write(f"**Assistant**: {bot_response}")
 
