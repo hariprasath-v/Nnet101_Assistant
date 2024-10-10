@@ -1,21 +1,18 @@
+from openai import OpenAI
+import minsearch
 import streamlit as st
 import requests
 import json
-
-# Load JSON data directly from URL
-url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/nnet_101_qna_with_id.json"
-response = requests.get(url)
-data = response.json()
-
-# Load minsearch from URL and save it
-url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch.py"
-response = requests.get(url)
-
-# Save the content to a local file
-with open("minsearch.py", "wb") as file:
-    file.write(response.content)
-
+import os
 import minsearch
+
+
+# Load JSON data 
+with open("./data/nnet_101_qna_with_id.json", 'rt') as f_in:
+    data = json.load(f_in)
+
+
+
 
 # Create the index
 index = minsearch.Index(
@@ -26,16 +23,14 @@ index = minsearch.Index(
 # Fit the index with data
 index.fit(data)
 
-
-from openai import OpenAI
-
+#Ollama's opeai end point
 client = OpenAI(
     base_url='http://localhost:11434/v1',
     api_key='ollama',
 )
 
 
-
+#tfidf search
 def search(query):
     results = index.search(
         query=query,
@@ -44,6 +39,7 @@ def search(query):
 
     return results
 
+#build prompt
 def build_prompt(query, search_results):
     prompt_template = """
 You're a course teaching assistant. Answer the QUESTION based on the CONTEXT from the FAQ database.
@@ -56,28 +52,29 @@ CONTEXT:
 """.strip()
 
     context = ""
-    
+
     for doc in search_results:
-        context = context + f"tags: {doc['tags']}\nquestion: {doc['question']}\nanswer: {doc['answer']}\n\n"
-    
+        context = context + \
+            f"tags: {doc['tags']}\nquestion: {doc['question']}\nanswer: {doc['answer']}\n\n"
+
     prompt = prompt_template.format(question=query, context=context).strip()
     return prompt
 
+#llm response
 def llm(prompt):
     response = client.chat.completions.create(
         model="gemma:2b",
         messages=[{"role": "user", "content": prompt}]
     )
-    
+
     return response.choices[0].message.content
 
-
+#rag response
 def rag(query):
     search_results = search(query)
     prompt = build_prompt(query, search_results)
     answer = llm(prompt)
     return answer
-
 
 
 # Initialize conversation history
@@ -98,7 +95,8 @@ if user_input:
 
     # Display the response
     bot_response = rag(user_input)
-    st.session_state.history.append({"role": "assistant", "content": bot_response})
+    st.session_state.history.append(
+        {"role": "assistant", "content": bot_response})
     st.write(f"**Assistant**: {bot_response}")
 
 # Display conversation history
