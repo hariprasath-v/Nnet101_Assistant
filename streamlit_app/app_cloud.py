@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 import requests
 import json
@@ -6,53 +7,47 @@ import sys
 
 import google.generativeai as genai
 import os
+from sentence_transformers import SentenceTransformer
+import lancedb
+from typing import List, Optional
+import pyarrow as pa
+from lancedb.pydantic import LanceModel, Vector
 
 genai.configure(api_key=st.secrets["gemini_key"])
-model = genai.GenerativeModel("models/gemini-1.0-pro")
+llm_model = genai.GenerativeModel("models/gemini-1.0-pro")
 
 # Load JSON data directly from URL
-url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/nnet_101_qna_with_id.json"
-response = requests.get(url)
-data = response.json()
+data_vec_url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/nnet_101_qna_with_id_vector.csv"
+data_vec = pd.read_csv(data_vec_url)
+data_vec['question_answer_vector']= data_vec['question_answer_vector'].apply(lambda x: [float(i) for i in x.strip("[]").split(",") if i])
+
+#Load sentence trasformer model
+model_name = 'all-MiniLM-L6-v2'
+sen_trans_model = SentenceTransformer(model_name)
 
 
-# Load minsearch from URL
-url = "https://raw.githubusercontent.com/alexeygrigorev/minsearch/main/minsearch.py"
-response = requests.get(url)
+schema = pa.schema([
+            pa.field("question", pa.string()),
+            pa.field("answer", pa.string()),
+            pa.field("tags", pa.string()),
+            pa.field("question_answer_vector", pa.list_(pa.float32(),384))])
 
-# Save the content to the current working directory
-minsearch_file_path = "minsearch.py"  # Saving directly in the root of your app
-with open(minsearch_file_path, "wb") as file:
-    file.write(response.content)
+db = lancedb.connect("/tmp/lancedb")
 
-# Import the module from the saved file
-spec = importlib.util.spec_from_file_location("minsearch", minsearch_file_path)
-minsearch = importlib.util.module_from_spec(spec)
-import sys
-sys.modules["minsearch"] = minsearch
-spec.loader.exec_module(minsearch)
+data_table = pa.Table.from_pandas(data_vec, schema=schema)
 
-
-# Create the index
-index = minsearch.Index(
-    text_fields=["question", "answer"],
-    keyword_fields=["tag"]
-)
-
-# Fit the index with data
-index.fit(data)
-
-
-
+# Create the table in LanceDB
+tbl = db.create_table("nnet101", data=data_table, mode="overwrite")
 
 
 def search(query):
-    results = index.search(
-        query=query,
-        num_results=5
-    )
+    # Embed the question
+    emb = sen_trans_model.encode(query, show_progress_bar=False)
 
-    return results
+    # Use LanceDB to get top 5 most relevant context
+    context = tbl.search(emb,vector_column_name = 'question_answer_vector',).limit(5).to_pandas()
+
+    return context[['question','answer','tags']].to_dict(orient='records')
 
 def build_prompt(query, search_results):
     prompt_template = """
@@ -74,7 +69,7 @@ CONTEXT:
     return prompt
 
 def llm(prompt):
-    response = model.generate_content(prompt)
+    response = llm_model.generate_content(prompt)
     
     return response.text
 
