@@ -2,5 +2,7 @@ requests
 numpy
 pandas
 google-generativeai
-scikit-learn
+pyarrow
+lancedb
+sentence_transformers
 
