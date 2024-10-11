@@ -63,7 +63,7 @@ CONTEXT:
     context = ""
     
     for doc in search_results:
-        context = context + f"tags: {doc['tags']}\nquestion: {doc['question']}\nanswer: {doc['answer']}\n\n"
+        context = context + f"tags: {doc['tags']}\nquestion: {doc['question']}\nanswer: {doc['answer_llm']}\n\n"
     
     prompt = prompt_template.format(question=query, context=context).strip()
     return prompt
