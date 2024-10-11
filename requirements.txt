@@ -2,3 +2,4 @@ streamlit
 openai
 elasticsearch
 scikit-learn
+sentence_transformers
