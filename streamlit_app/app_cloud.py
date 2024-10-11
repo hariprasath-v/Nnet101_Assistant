@@ -16,8 +16,8 @@ from lancedb.pydantic import LanceModel, Vector
 genai.configure(api_key=st.secrets["gemini_key"])
 llm_model = genai.GenerativeModel("models/gemini-1.0-pro")
 
-# Load JSON data directly from URL
-data_vec_url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/nnet_101_qna_with_id_vector.csv"
+# Load data from URL
+data_vec_url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/llm_answers_mistral_7b_instruct_v0_1_with_vector.csv"
 data_vec = pd.read_csv(data_vec_url)
 data_vec['question_answer_vector']= data_vec['question_answer_vector'].apply(lambda x: [float(i) for i in x.strip("[]").split(",") if i])
 
@@ -28,13 +28,13 @@ sen_trans_model = SentenceTransformer(model_name)
 
 schema = pa.schema([
             pa.field("question", pa.string()),
-            pa.field("answer", pa.string()),
+            pa.field("answer_llm", pa.string()),
             pa.field("tags", pa.string()),
             pa.field("question_answer_vector", pa.list_(pa.float32(),384))])
 
 db = lancedb.connect("/tmp/lancedb")
 
-data_table = pa.Table.from_pandas(data_vec, schema=schema)
+data_table = pa.Table.from_pandas(data_vec[['answer_llm', 'question', 'tags', 'question_answer_vector']], schema=schema)
 
 # Create the table in LanceDB
 tbl = db.create_table("nnet101", data=data_table, mode="overwrite")
