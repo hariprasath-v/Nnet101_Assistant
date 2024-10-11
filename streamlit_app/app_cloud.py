@@ -47,7 +47,7 @@ def search(query):
     # Use LanceDB to get top 5 most relevant context
     context = tbl.search(emb,vector_column_name = 'question_answer_vector',).limit(5).to_pandas()
 
-    return context[['question','answer','tags']].to_dict(orient='records')
+    return context[['question','answer_llm','tags']].to_dict(orient='records')
 
 def build_prompt(query, search_results):
     prompt_template = """
