@@ -119,8 +119,6 @@ streamlit run streamlit_app/app.py
 ```
    
 ## Streamlit Cloud APP
-- Retrieve results based on vector similarity using lancedb
-- Generate answer using gemini-1.0-pro model
 - https://nnet101assistant.streamlit.app/
   
 ![Alt text](https://github.com/hariprasath-v/Nnet101_Assistant/blob/main/streamlit_app/app_interface.PNG)
