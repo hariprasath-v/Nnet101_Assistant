@@ -4,7 +4,7 @@
 - 500 QnA pairs.
 
 ### nnet_101_qna_with_id.json
-- Create unique hash ID for QnA pairs.
+- Create a unique hash ID for QnA pairs.
 
 ### gemini_llm_generated_questions_raw.pkl
 - 2500 LLM-generated sample questions in raw format.
@@ -27,8 +27,12 @@
 ### llm_answers_mistral_7b_instruct_v0_1.csv
 - Cosine similarity of LLM-generated answer and original answer.
 
+### llm_answers_mistral_7b_instruct_v0_1_with_vector.csv
+- Vector encoded questions+llm_anwers
+
 ### evaluations_llama-aqa.csv
 - Relevance details for Answer-Question-Answer
 
 ### evaluations_llama-qa.csv
 - Relevance details for Question-Answer
+
