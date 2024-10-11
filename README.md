@@ -77,7 +77,7 @@ Relevance of LLM-generated answers to questions using llama-2-7b-chat-int8
 ## Technologies
 - Data: Stackapps API
 - LLM: Gemini, Mistral, llama, Ollama, cloudflare
-- Knowledge base: TF-IDF search, Elasticsearch
+- Knowledge base: TF-IDF search, Elasticsearch, Lancedb
 - Interface: Streamlit
 
 ## Installation
@@ -119,7 +119,7 @@ streamlit run streamlit_app/app.py
 ```
    
 ## Streamlit Cloud APP
-- Retrieve results based on TF-IDF similarity
+- Retrieve results based on vector similarity using lancedb
 - Generate answer using gemini-1.0-pro model
 - https://nnet101assistant.streamlit.app/
   
