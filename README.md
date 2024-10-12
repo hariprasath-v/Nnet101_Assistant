@@ -121,4 +121,4 @@ streamlit run streamlit_app/app.py
 ## Streamlit Cloud APP
 - https://nnet101assistant.streamlit.app/
   
-![Alttext](https://github.com/hariprasath-v/Nnet101_Assistant/blob/main/streamlit_app/app_interface.jpg)
+![Alt text](https://github.com/hariprasath-v/Nnet101_Assistant/blob/main/streamlit_app/app_interface.jpg)
