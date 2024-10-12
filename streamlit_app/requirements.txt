@@ -5,4 +5,5 @@ google-generativeai
 pyarrow
 lancedb
 sentence_transformers
+extra-streamlit-components
 
