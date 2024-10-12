@@ -128,17 +128,17 @@ if user_input := st.chat_input("Message Nnet101"):
     
     # Add assistant response to chat history            
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
+    # Display conversation history from session state
+    for message in st.session_state.messages:
+        if message["role"] == "user":
+            with st.chat_message("user"):
+                st.markdown(message["content"])
+        else:
+            with st.chat_message("assistant"):
+                st.markdown(message["content"])
+                                                
             
-# Display conversation history from session state
-for message in st.session_state.messages:
-    if message["role"] == "user":
-        with st.chat_message("user"):
-            st.markdown(message["content"])
-    else:
-        with st.chat_message("assistant"):
-            st.markdown(message["content"])
-
-
+                                                                                   
 
 
 with st.sidebar:
