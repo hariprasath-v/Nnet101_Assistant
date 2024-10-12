@@ -14,7 +14,7 @@ from typing import List, Optional
 import pyarrow as pa
 from lancedb.pydantic import LanceModel, Vector
 
-cookie_manager = stx.CookieManager(key="cookie_manager")
+#cookie_manager = stx.CookieManager(key="cookie_manager")
 
 genai.configure(api_key=st.secrets["gemini_key"])
 llm_model = genai.GenerativeModel("models/gemini-1.0-pro")
