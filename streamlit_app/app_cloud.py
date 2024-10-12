@@ -113,41 +113,39 @@ st.write("Ask me about neural network basics, and I'll do my best to respond!")
 
 # Chat UI using chat_input and chat_message
 if user_input := st.chat_input("Message Nnet101"):
-    # Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(user_input)
+
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": user_input})
-    
+
     # Process input and get response (assuming rag() is defined)
     bot_response = rag(user_input)  # Call the RAG model for response generation
 
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        st.markdown(bot_response)
     
-    # Add assistant response to chat history            
+    
+
+    # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
-    # Display conversation history from session state
-    for message in st.session_state.messages:
-        if message["role"] == "user":
-            with st.chat_message("user"):
-                st.markdown(message["content"])
-        else:
-            with st.chat_message("assistant"):
-                st.markdown(message["content"])
-                                                
-            
-                                                                                   
+ 
+# Display conversation history from session state
+for message in st.session_state.messages:
+    if message["role"] == "user":
+        with st.chat_message("user"):
+            st.markdown(message["content"])
+    else:
+        with st.chat_message("assistant"):
+            st.markdown(message["content"])
 
 
+
+
+# Sidebar for chat controls
 with st.sidebar:
     st.header("Chat Controls")
-    
-    # Clear history button in sidebar
+
+    # Button to clear conversation history
     if st.button("Clear Conversation"):
-        st.session_state["messages"] = []
-        
-    # Display message in sidebar if conversation history is empty
+        st.session_state["messages"].clear()  # Clear message history
+
+    # Message if history is empty
     if not st.session_state.messages:
         st.write("No conversation history.")
