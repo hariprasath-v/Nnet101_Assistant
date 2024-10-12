@@ -86,13 +86,6 @@ def rag(query):
     answer = llm(prompt)
     return answer
 
-sample_questions = ["What is batch size?",
-                    "How do I choose the number of hidden layers in a neural network?",
-                    "What are the advantages of smaller batch sizes?",
-                    "When is the output of ReLU equal to zero?",
-                    "What is global max pooling?"]
-
-
 st.markdown(
             """
         <style>
@@ -163,16 +156,3 @@ for message in st.session_state.messages:
     else:
         with st.chat_message("assistant"):
             st.markdown(message["content"]) 
-
-
-# Sidebar for chat controls
-with st.sidebar:
-    st.header("Chat Controls")
-
-    # Button to clear conversation history
-    if st.button("Clear Conversation"):
-        st.session_state["messages"].clear()  # Clear message history
-
-    # Message if history is empty
-    if not st.session_state.messages:
-        st.write("No conversation history.")
