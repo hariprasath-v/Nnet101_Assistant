@@ -86,6 +86,13 @@ def rag(query):
     answer = llm(prompt)
     return answer
 
+sample_questions = ["What is batch size?",
+                    "How do I choose the number of hidden layers in a neural network?",
+                    "What are the advantages of smaller batch sizes?",
+                    "When is the output of ReLU equal to zero?",
+                    "What is global max pooling?"]
+
+
 st.markdown(
             """
         <style>
