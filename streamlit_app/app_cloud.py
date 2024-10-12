@@ -86,7 +86,11 @@ def rag(query):
     answer = llm(prompt)
     return answer
 
-
+sample_questions = ["What is batch size?",
+                    "How do I choose the number of hidden layers in a neural network?",
+                    "What are the advantages of smaller batch sizes?",
+                    "When is the output of ReLU equal to zero?",
+                    "What is global max pooling?"]
 
 
 st.markdown(
@@ -101,9 +105,13 @@ st.markdown(
             unsafe_allow_html=True,
         )
 
+
 # Initialize conversation history
 if "messages" not in st.session_state:
       st.session_state["messages"] = []
+
+
+
 
 # Streamlit app UI
 st.title("Nnet101_Assistant")
@@ -111,21 +119,42 @@ st.write("Ask me about neural network basics, and I'll do my best to respond!")
 
 
 
+user_input = st.chat_input("Message Nnet101")
 # Chat UI using chat_input and chat_message
-if user_input := st.chat_input("Message Nnet101"):
+if user_input: 
 
     # Add user message to chat history
+    
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     # Process input and get response (assuming rag() is defined)
     bot_response = rag(user_input)  # Call the RAG model for response generation
 
     
-    
 
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
  
+
+
+
+
+# Sidebar for chat controls
+with st.sidebar:
+    st.header("Chat Controls")
+
+    with st.popover("Sample Questions"):
+        for q in sample_questions:
+            st.markdown(q)
+    
+    # Button to clear conversation history
+    if st.button("Clear Conversation"):
+        st.session_state["messages"].clear()  # Clear message history
+
+    # Message if history is empty
+    if not st.session_state.messages:
+        st.write("No conversation history.")
+
 # Display conversation history from session state
 for message in st.session_state.messages:
     if message["role"] == "user":
@@ -133,9 +162,7 @@ for message in st.session_state.messages:
             st.markdown(message["content"])
     else:
         with st.chat_message("assistant"):
-            st.markdown(message["content"])
-
-
+            st.markdown(message["content"]) 
 
 
 # Sidebar for chat controls
