@@ -19,7 +19,7 @@ from lancedb.pydantic import LanceModel, Vector
 genai.configure(api_key=st.secrets["gemini_key"])
 llm_model = genai.GenerativeModel("models/gemini-1.0-pro")
 
-# Load JSON data directly from URL
+# Load data 
 data_vec_url = "https://raw.githubusercontent.com/hariprasath-v/Nnet101_Assistant/refs/heads/main/data/llm_answers_mistral_7b_instruct_v0_1_with_vector.csv"
 data_vec = pd.read_csv(data_vec_url)
 data_vec['question_answer_vector']= data_vec['question_answer_vector'].apply(lambda x: [float(i) for i in x.strip("[]").split(",") if i])
