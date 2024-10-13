@@ -19,5 +19,5 @@
 #### Response Generation Steps,
 - Receive the user query and encode it using the sentence transformer model.
 - Perform a vector search based on the encoded query and retrieve the top 5 results.
-- Generate RAG results using LLM
+- Generate RAG results using the LLM
 ---
